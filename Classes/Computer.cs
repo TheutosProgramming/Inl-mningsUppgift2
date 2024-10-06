@@ -5,7 +5,7 @@
         private static Random random;
         private static int decision = 0;
         public static string computerDecision = "";
-        private static int ammo = 0;
+        public static int ammo = 0;
         private static void NumberGenerator()
         {
             random = new Random();
@@ -13,22 +13,30 @@
         }
         public static void ComputerDecision()
         {
-            NumberGenerator();
-            if (ammo == 3)
-            {
-                Shotgun();
-            }
-            else if (decision == 1)
-            {
-                Shoot();
-            }
-            else if (decision == 2)
-            {
-                Block();
-            }
-            else if (decision == 3)
+            if (Logic.gameRound == 0)
             {
                 Load();
+                Logic.gameRound++;
+            }
+            else
+            {
+                NumberGenerator();
+                if (ammo == 3)
+                {
+                    Shotgun();
+                }
+                else if (decision == 1)
+                {
+                    Shoot();
+                }
+                else if (decision == 2)
+                {
+                    Block();
+                }
+                else if (decision == 3)
+                {
+                    Load();
+                }
             }
         }
         public static void Shotgun()

@@ -33,10 +33,10 @@
             buttonLoad = new Button();
             labelPlayer = new Label();
             labelComputer = new Label();
-            listBoxResults = new ListBox();
             buttonShotgun = new Button();
             labelPlayerAmmo = new Label();
             labelComputerAmmo = new Label();
+            textBoxResults = new TextBox();
             SuspendLayout();
             // 
             // buttonShoot
@@ -72,7 +72,7 @@
             // labelPlayer
             // 
             labelPlayer.AutoSize = true;
-            labelPlayer.Location = new Point(207, 46);
+            labelPlayer.Location = new Point(208, 128);
             labelPlayer.Name = "labelPlayer";
             labelPlayer.Size = new Size(39, 15);
             labelPlayer.TabIndex = 4;
@@ -81,20 +81,11 @@
             // labelComputer
             // 
             labelComputer.AutoSize = true;
-            labelComputer.Location = new Point(384, 44);
+            labelComputer.Location = new Point(384, 128);
             labelComputer.Name = "labelComputer";
             labelComputer.Size = new Size(61, 15);
             labelComputer.TabIndex = 5;
             labelComputer.Text = "Computer";
-            // 
-            // listBoxResults
-            // 
-            listBoxResults.FormattingEnabled = true;
-            listBoxResults.ItemHeight = 15;
-            listBoxResults.Location = new Point(208, 64);
-            listBoxResults.Name = "listBoxResults";
-            listBoxResults.Size = new Size(237, 124);
-            listBoxResults.TabIndex = 3;
             // 
             // buttonShotgun
             // 
@@ -109,32 +100,40 @@
             // labelPlayerAmmo
             // 
             labelPlayerAmmo.AutoSize = true;
-            labelPlayerAmmo.Location = new Point(208, 29);
+            labelPlayerAmmo.Location = new Point(208, 113);
             labelPlayerAmmo.Name = "labelPlayerAmmo";
-            labelPlayerAmmo.Size = new Size(38, 15);
+            labelPlayerAmmo.Size = new Size(56, 15);
             labelPlayerAmmo.TabIndex = 7;
-            labelPlayerAmmo.Text = "label1";
+            labelPlayerAmmo.Text = "Ammo: 0";
             // 
             // labelComputerAmmo
             // 
             labelComputerAmmo.AutoSize = true;
-            labelComputerAmmo.Location = new Point(407, 29);
+            labelComputerAmmo.Location = new Point(389, 113);
             labelComputerAmmo.Name = "labelComputerAmmo";
-            labelComputerAmmo.Size = new Size(38, 15);
+            labelComputerAmmo.Size = new Size(56, 15);
             labelComputerAmmo.TabIndex = 8;
-            labelComputerAmmo.Text = "label2";
+            labelComputerAmmo.Text = "Ammo: 0";
+            // 
+            // textBoxResults
+            // 
+            textBoxResults.Location = new Point(208, 146);
+            textBoxResults.Multiline = true;
+            textBoxResults.Name = "textBoxResults";
+            textBoxResults.Size = new Size(237, 42);
+            textBoxResults.TabIndex = 9;
             // 
             // FormGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(textBoxResults);
             Controls.Add(labelComputerAmmo);
             Controls.Add(labelPlayerAmmo);
             Controls.Add(buttonShotgun);
             Controls.Add(labelComputer);
             Controls.Add(labelPlayer);
-            Controls.Add(listBoxResults);
             Controls.Add(buttonLoad);
             Controls.Add(buttonBlock);
             Controls.Add(buttonShoot);
@@ -152,9 +151,9 @@
         private Label labelPlayer;
         private Label labelComputer;
         private TextBox textBox1;
-        private ListBox listBoxResults;
         private Button buttonShotgun;
         private Label labelPlayerAmmo;
         private Label labelComputerAmmo;
+        private TextBox textBoxResults;
     }
 }
