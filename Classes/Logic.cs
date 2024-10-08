@@ -4,19 +4,23 @@
     {
         public static int gameRound = 0;
         public static string outcome = "";
-        public static void OutCome()
+        public static bool gameOver = false;
+        public static bool OutCome()
         {
             if (Computer.computerDecision == "Shotgun" && Player.playerDecision == "Shotgun")
             {
                 MessageBox.Show("Draw!");
+                gameOver = true;
             }
             else if (Computer.computerDecision == "Shotgun")
             {
                 MessageBox.Show("Computer wins!");
+                gameOver = true;
             }
             else if (Player.playerDecision == "Shotgun")
             {
                 MessageBox.Show("Player wins!");
+                gameOver = true;
             }
             else if (Player.playerDecision == "Shoot" && Computer.computerDecision == "Shoot")
             {
@@ -29,6 +33,7 @@
             else if (Player.playerDecision == "Shoot" && Computer.computerDecision == "Load")
             {
                 outcome = "Player shoots and computer loads. Player win!";
+                gameOver = true;
                 MessageBox.Show("Player wins!");
             }
             else if (Player.playerDecision == "Block" && Computer.computerDecision == "Shoot")
@@ -46,6 +51,7 @@
             else if (Player.playerDecision == "Load" && Computer.computerDecision == "Shoot")
             {
                 outcome = "Player loads and computer shoots. Computer win!";
+                gameOver = true;
                 MessageBox.Show("Computer wins!");
             }
             else if (Player.playerDecision == "Load" && Computer.computerDecision == "Block")
@@ -56,6 +62,7 @@
             {
                 outcome = "Player loads and computer loads. Both gain ammo";
             }
+            return gameOver;
         }
     }
 }

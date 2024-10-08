@@ -26,5 +26,9 @@
             MessageBox.Show($"Player loads! Player has {ammo} rounds loaded!");
             playerDecision = "Load";
         }
+        public static void NewGame()
+        {
+            ammo = 0;
+        }
     }
 }
