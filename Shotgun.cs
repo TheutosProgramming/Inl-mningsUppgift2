@@ -7,7 +7,7 @@ namespace InlämningsUppgift2
         public FormGame()
         {
             InitializeComponent();
-            UpdateLabel();
+            UpdateLabelAndTextBox();
         }
 
         private void buttonShoot_Click(object sender, EventArgs e)
@@ -15,8 +15,7 @@ namespace InlämningsUppgift2
             Computer.ComputerDecision();
             Player.Shoot();
             Logic.OutCome();
-            UpdateLabel();
-            textBoxResults.Text = Logic.outcome;
+            UpdateLabelAndTextBox();
             Buttons();
             GameOver();
         }
@@ -26,8 +25,7 @@ namespace InlämningsUppgift2
             Computer.ComputerDecision();
             Player.Block();
             Logic.OutCome();
-            UpdateLabel();
-            textBoxResults.Text = Logic.outcome;
+            UpdateLabelAndTextBox();
             Buttons();
             GameOver();
         }
@@ -37,8 +35,7 @@ namespace InlämningsUppgift2
             Computer.ComputerDecision();
             Player.Load();
             Logic.OutCome();
-            UpdateLabel();
-            textBoxResults.Text = Logic.outcome;
+            UpdateLabelAndTextBox();
             Buttons();
             GameOver();
         }
@@ -48,8 +45,7 @@ namespace InlämningsUppgift2
             Computer.ComputerDecision();
             Player.Shotgun();
             Logic.OutCome();
-            UpdateLabel();
-            textBoxResults.Text = Logic.outcome;
+            UpdateLabelAndTextBox();
             GameOver();
         }
 
@@ -73,10 +69,9 @@ namespace InlämningsUppgift2
         private void NewGame()
         {
             Logic.NewGame();
-            UpdateLabel();
+            UpdateLabelAndTextBox();
             buttonNewGame.Visible = false;
             textBoxResults.Clear();
-            Logic.gameOver = false;
             Buttons();
         }
         private void Buttons()
@@ -102,10 +97,12 @@ namespace InlämningsUppgift2
                 buttonShoot.Visible = true;
             }
         }
-        private void UpdateLabel()
+        private void UpdateLabelAndTextBox()
         {
             labelPlayerAmmo.Text = "Ammo: " + Logic.playerAmmo.ToString();
             labelComputerAmmo.Text = "Ammo: " + Logic.computerAmmo.ToString();
+            textBoxResults.Text = Logic.outcome;
+
         }
     }
 }

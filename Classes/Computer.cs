@@ -57,7 +57,6 @@
         }
         public static void Block()
         {
-            MessageBox.Show("Computer block");
             computerDecision = "Block";
         }
         public static void Load()
