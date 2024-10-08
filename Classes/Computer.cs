@@ -5,24 +5,13 @@
         private static Random random = new Random();
         private static int decision = 0;
         public static string computerDecision = "";
-        public static int ammo = 0;
-        private static void NumberGenerator()
-        {
-            random = new Random();
-            decision = random.Next(1, 4);
-        }
-        
-        private static void BlockOrLoad()
-        {
-            random = new Random();
-            decision = random.Next(2, 4);
-        }
+
         public static void ComputerDecision()
         {
-            if (ammo == 0)
+            if (Logic.computerAmmo == 0)
             {
                 decision = random.Next(2, 4);
-                if (Player.ammo == 0)
+                if (Logic.playerAmmo == 0)
                 {
                     Load();
                 }
@@ -35,7 +24,7 @@
                     Load();
                 }
             }
-            else if (ammo == 3)
+            else if (Logic.computerAmmo == 3)
             {
                 Shotgun();
             }
@@ -55,53 +44,15 @@
                     Load();
                 }
             }
-
-            /*if (Logic.gameRound == 0)
-            {
-                Load();
-                Logic.gameRound++;
-            }
-            else
-            {
-                if (ammo == 0 && Player.ammo == 0)
-                {
-                    Load();
-                }
-                else if (ammo == 0)
-                {
-                    BlockOrLoad();
-                }
-                else
-                {
-                    NumberGenerator();
-                }
-                if (ammo == 3)
-                {
-                    Shotgun();
-                }
-                else if (decision == 1)
-                {
-                    Shoot();
-                }
-                else if (decision == 2)
-                {
-                    Block();
-                }
-                else if (decision == 3)
-                {
-                    Load();
-                }
-            }*/
         }
         public static void Shotgun()
         {
-            MessageBox.Show("Computer shotgun");
             computerDecision = "Shotgun";
+            Logic.computerAmmo -= Logic.shotgunAmmoUsage;
         }
         public static void Shoot()
         {
-            MessageBox.Show("Computer shoot");
-            ammo--;
+            Logic.computerAmmo -= Logic.shootingAmmoUsage;
             computerDecision = "Shoot";
         }
         public static void Block()
@@ -111,14 +62,8 @@
         }
         public static void Load()
         {
-            ammo++;
-            MessageBox.Show($"Computer loads! Computer has {ammo} rounds loaded!");
+            Logic.computerAmmo += Logic.loadingAmmo;
             computerDecision = "Load";
-        }
-        public static void NewGame()
-        {
-            ammo = 0;
-
         }
     }
 }

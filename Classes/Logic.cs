@@ -1,68 +1,109 @@
-﻿namespace InlämningsUppgift2.Classes
+﻿using System.Numerics;
+
+namespace InlämningsUppgift2.Classes
 {
     public static class Logic
     {
-        public static int gameRound = 0;
         public static string outcome = "";
         public static bool gameOver = false;
+        public static int playerAmmo = 0;
+        public static int computerAmmo = 0;
+        public static int loadingAmmo = 1;
+        public static int shootingAmmoUsage = 1;
+        public static int shotgunAmmoUsage = 3;
         public static bool OutCome()
         {
-            if (Computer.computerDecision == "Shotgun" && Player.playerDecision == "Shotgun")
-            {
-                MessageBox.Show("Draw!");
-                gameOver = true;
+            if (Player.playerDecision == "Shotgun")
+            {   if (Computer.computerDecision == "Shotgun")
+                {
+                    outcome = "Both player and Computer fires the shotgun and both loses";
+                    gameOver = true;
+                }
+                else if (Computer.computerDecision == "Shoot")
+                {
+                    outcome = "Player fires the shotgun and Computer tries shooting. Player Win!";
+                    gameOver = true;
+                }
+                else if (Computer.computerDecision == "Block")
+                {
+                    outcome = "Player fires the shotgun and Computer tries hiding. Player Win!";
+                    gameOver = true;
+                }
+                else if (Computer.computerDecision == "Load")
+                {
+                    outcome = "Player fires the shotgun and Computer loads. Player Win!";
+                    gameOver = true;
+                }
             }
-            else if (Computer.computerDecision == "Shotgun")
+            else if (Player.playerDecision == "Shoot")
             {
-                MessageBox.Show("Computer wins!");
-                gameOver = true;
+                if (Computer.computerDecision == "Shoot")
+                {
+                    outcome = "Player shoots and computer shoots. Both loses ammo";
+                }
+                else if (Computer.computerDecision == "Block")
+                {
+                    outcome = "Player shoots and computer blocks. Player loses ammo";
+                }
+                else if (Computer.computerDecision == "Load")
+                {
+                    outcome = "Player shoots and computer loads. Player win!";
+                    gameOver = true;
+                }
+                else if (Computer.computerDecision == "Shotgun")
+                {
+                    outcome = "Computer fires the shotgun and the player shoots. Computer wins!";
+                    gameOver = true;
+                }
             }
-            else if (Player.playerDecision == "Shotgun")
+            else if (Player.playerDecision == "Block")
             {
-                MessageBox.Show("Player wins!");
-                gameOver = true;
+                if (Computer.computerDecision == "Shoot")
+                {
+                    outcome = "Player blocks and computer shoots. Player lost ammo";
+                }
+                else if (Player.playerDecision == "Block" && Computer.computerDecision == "Block")
+                {
+                    outcome = "Player blocks and computer blocks. Nothing happens";
+                }
+                else if (Player.playerDecision == "Block" && Computer.computerDecision == "Load")
+                {
+                    outcome = "Player blocks and computer loads. Computer gains ammo";
+                }
+                else if (Computer.computerDecision == "Shotgun")
+                {
+                    outcome = "Computer fires the shotgun and the player tries hiding. Computer wins!";
+                    gameOver = true;
+                }
             }
-            else if (Player.playerDecision == "Shoot" && Computer.computerDecision == "Shoot")
+            else if (Player.playerDecision == "Load")
             {
-                outcome = "Player shoots and computer shoots. Both loses ammo";
-            }
-            else if (Player.playerDecision == "Shoot" && Computer.computerDecision == "Block")
-            {
-                outcome = "Player shoots and computer blocks. Player loses ammo";
-            }
-            else if (Player.playerDecision == "Shoot" && Computer.computerDecision == "Load")
-            {
-                outcome = "Player shoots and computer loads. Player win!";
-                gameOver = true;
-                MessageBox.Show("Player wins!");
-            }
-            else if (Player.playerDecision == "Block" && Computer.computerDecision == "Shoot")
-            {
-                outcome = "Player blocks and computer shoots. Player lost ammo";
-            }
-            else if (Player.playerDecision == "Block" && Computer.computerDecision == "Block")
-            {
-                outcome = "Player blocks and computer blocks. Nothing happens";
-            }
-            else if (Player.playerDecision == "Block" && Computer.computerDecision == "Load")
-            {
-                outcome = "Player blocks and computer loads. Computer gains ammo";
-            }
-            else if (Player.playerDecision == "Load" && Computer.computerDecision == "Shoot")
-            {
-                outcome = "Player loads and computer shoots. Computer win!";
-                gameOver = true;
-                MessageBox.Show("Computer wins!");
-            }
-            else if (Player.playerDecision == "Load" && Computer.computerDecision == "Block")
-            {
-                outcome = "Player loads and computer blocks. Player gains ammo";
-            }
-            else if (Player.playerDecision == "Load" && Computer.computerDecision == "Load")
-            {
-                outcome = "Player loads and computer loads. Both gain ammo";
+                if (Computer.computerDecision == "Shoot")
+                {
+                    outcome = "Player loads and computer shoots. Computer win!";
+                    gameOver = true;
+                }
+                else if (Player.playerDecision == "Load" && Computer.computerDecision == "Block")
+                {
+                    outcome = "Player loads and computer blocks. Player gains ammo";
+                }
+                else if (Player.playerDecision == "Load" && Computer.computerDecision == "Load")
+                {
+                    outcome = "Player loads and computer loads. Both gain ammo";
+                }
+                else if (Computer.computerDecision == "Shotgun")
+                {
+                    outcome = "Computer fires the shotgun and the player loads. Computer wins!";
+                    gameOver = true;
+                }
             }
             return gameOver;
+        }
+
+        public static void NewGame()
+        {
+            playerAmmo = 0;
+            computerAmmo = 0;
         }
     }
 }
