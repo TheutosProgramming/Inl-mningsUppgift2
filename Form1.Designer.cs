@@ -37,6 +37,7 @@
             labelPlayerAmmo = new Label();
             labelComputerAmmo = new Label();
             textBoxResults = new TextBox();
+            buttonNewGame = new Button();
             SuspendLayout();
             // 
             // buttonShoot
@@ -120,14 +121,26 @@
             textBoxResults.Location = new Point(208, 146);
             textBoxResults.Multiline = true;
             textBoxResults.Name = "textBoxResults";
+            textBoxResults.ReadOnly = true;
             textBoxResults.Size = new Size(237, 42);
             textBoxResults.TabIndex = 9;
+            // 
+            // buttonNewGame
+            // 
+            buttonNewGame.Location = new Point(208, 194);
+            buttonNewGame.Name = "buttonNewGame";
+            buttonNewGame.Size = new Size(237, 52);
+            buttonNewGame.TabIndex = 10;
+            buttonNewGame.Text = "Nytt spel";
+            buttonNewGame.UseVisualStyleBackColor = true;
+            buttonNewGame.Click += buttonNewGame_Click;
             // 
             // FormGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonNewGame);
             Controls.Add(textBoxResults);
             Controls.Add(labelComputerAmmo);
             Controls.Add(labelPlayerAmmo);
@@ -155,5 +168,6 @@
         private Label labelPlayerAmmo;
         private Label labelComputerAmmo;
         private TextBox textBoxResults;
+        private Button buttonNewGame;
     }
 }

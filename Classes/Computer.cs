@@ -2,7 +2,7 @@
 {
     public static class Computer
     {
-        private static Random random;
+        private static Random random = new Random();
         private static int decision = 0;
         public static string computerDecision = "";
         public static int ammo = 0;
@@ -11,16 +11,70 @@
             random = new Random();
             decision = random.Next(1, 4);
         }
+        
+        private static void BlockOrLoad()
+        {
+            random = new Random();
+            decision = random.Next(2, 4);
+        }
         public static void ComputerDecision()
         {
-            if (Logic.gameRound == 0)
+            if (ammo == 0)
+            {
+                decision = random.Next(2, 4);
+                if (Player.ammo == 0)
+                {
+                    Load();
+                }
+                else if (decision == 2)
+                {
+                    Block();
+                }
+                else if (decision == 3)
+                {
+                    Load();
+                }
+            }
+            else if (ammo == 3)
+            {
+                Shotgun();
+            }
+            else
+            {
+                decision = random.Next(1, 4);
+                if (decision == 1)
+                {
+                    Shoot();
+                }
+                else if (decision == 2)
+                {
+                    Block();
+                }
+                else if (decision == 3)
+                {
+                    Load();
+                }
+            }
+
+            /*if (Logic.gameRound == 0)
             {
                 Load();
                 Logic.gameRound++;
             }
             else
             {
-                NumberGenerator();
+                if (ammo == 0 && Player.ammo == 0)
+                {
+                    Load();
+                }
+                else if (ammo == 0)
+                {
+                    BlockOrLoad();
+                }
+                else
+                {
+                    NumberGenerator();
+                }
                 if (ammo == 3)
                 {
                     Shotgun();
@@ -37,7 +91,7 @@
                 {
                     Load();
                 }
-            }
+            }*/
         }
         public static void Shotgun()
         {
@@ -60,6 +114,11 @@
             ammo++;
             MessageBox.Show($"Computer loads! Computer has {ammo} rounds loaded!");
             computerDecision = "Load";
+        }
+        public static void NewGame()
+        {
+            ammo = 0;
+
         }
     }
 }
