@@ -7,8 +7,7 @@ namespace InlämningsUppgift2
         public FormGame()
         {
             InitializeComponent();
-            labelPlayerAmmo.Text = "Ammo: " + Player.ammo.ToString();
-            labelComputerAmmo.Text = "Ammo: " + Computer.ammo.ToString();
+            UpdateLabel();
         }
 
         private void buttonShoot_Click(object sender, EventArgs e)
@@ -16,8 +15,7 @@ namespace InlämningsUppgift2
             Computer.ComputerDecision();
             Player.Shoot();
             Logic.OutCome();
-            labelPlayerAmmo.Text = "Ammo: " + Player.ammo.ToString();
-            labelComputerAmmo.Text = "Ammo: " + Computer.ammo.ToString();
+            UpdateLabel();
             textBoxResults.Text = Logic.outcome;
             Buttons();
             GameOver();
@@ -28,7 +26,7 @@ namespace InlämningsUppgift2
             Computer.ComputerDecision();
             Player.Block();
             Logic.OutCome();
-            labelComputerAmmo.Text = "Ammo: " + Computer.ammo.ToString();
+            UpdateLabel();
             textBoxResults.Text = Logic.outcome;
             Buttons();
             GameOver();
@@ -39,8 +37,7 @@ namespace InlämningsUppgift2
             Computer.ComputerDecision();
             Player.Load();
             Logic.OutCome();
-            labelPlayerAmmo.Text = "Ammo: " + Player.ammo.ToString();
-            labelComputerAmmo.Text = "Ammo: " + Computer.ammo.ToString();
+            UpdateLabel();
             textBoxResults.Text = Logic.outcome;
             Buttons();
             GameOver();
@@ -51,8 +48,7 @@ namespace InlämningsUppgift2
             Computer.ComputerDecision();
             Player.Shotgun();
             Logic.OutCome();
-            labelPlayerAmmo.Text = "Ammo: " + Player.ammo.ToString();
-            labelComputerAmmo.Text = "Ammo: " + Computer.ammo.ToString();
+            UpdateLabel();
             textBoxResults.Text = Logic.outcome;
             GameOver();
         }
@@ -76,10 +72,8 @@ namespace InlämningsUppgift2
 
         private void NewGame()
         {
-            Player.NewGame();
-            Computer.NewGame();
-            labelPlayerAmmo.Text = "Ammo: " + Player.ammo.ToString();
-            labelComputerAmmo.Text = "Ammo: " + Computer.ammo.ToString();
+            Logic.NewGame();
+            UpdateLabel();
             buttonNewGame.Visible = false;
             textBoxResults.Clear();
             Logic.gameOver = false;
@@ -87,26 +81,31 @@ namespace InlämningsUppgift2
         }
         private void Buttons()
         {
-            if (Logic.gameOver == false && Player.ammo == 0)
+            if (Logic.gameOver == false && Logic.playerAmmo == 0)
             {
                 buttonShoot.Visible = false;
                 buttonBlock.Visible = true;
                 buttonLoad.Visible = true;
                 buttonShotgun.Visible = false;
             }
-            else if (Player.ammo == 0)
+            else if (Logic.playerAmmo == 0)
             {
                 buttonShoot.Visible = false;
                 buttonShotgun.Visible = false;
             }
-            else if (Player.ammo >= 1)
-            {
-                buttonShoot.Visible = true;
-            }
-            else if (Player.ammo >= 3)
+            else if (Logic.playerAmmo >= 3)
             {
                 buttonShotgun.Visible = true;
             }
+            else if (Logic.playerAmmo >= 1)
+            {
+                buttonShoot.Visible = true;
+            }
+        }
+        private void UpdateLabel()
+        {
+            labelPlayerAmmo.Text = "Ammo: " + Logic.playerAmmo.ToString();
+            labelComputerAmmo.Text = "Ammo: " + Logic.computerAmmo.ToString();
         }
     }
 }
