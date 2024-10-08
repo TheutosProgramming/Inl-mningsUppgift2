@@ -16,7 +16,6 @@
         }
         public static void Block()
         {
-            MessageBox.Show("Player block");
             playerDecision = "Block";
         }
         public static void Load()

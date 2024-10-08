@@ -11,6 +11,7 @@ namespace InlämningsUppgift2.Classes
         public static int loadingAmmo = 1;
         public static int shootingAmmoUsage = 1;
         public static int shotgunAmmoUsage = 3;
+
         public static bool OutCome()
         {
             if (Player.playerDecision == "Shotgun")
@@ -104,6 +105,7 @@ namespace InlämningsUppgift2.Classes
         {
             playerAmmo = 0;
             computerAmmo = 0;
+            gameOver = false;
         }
     }
 }
