@@ -8,6 +8,10 @@ namespace InlämningsUppgift2
         {
             InitializeComponent();
             UpdateLabelAndTextBox();
+            Buttons();
+            buttonBlock.Visible = false;
+            buttonLoad.Visible = false;
+
         }
 
         private void buttonShoot_Click(object sender, EventArgs e)
@@ -63,6 +67,23 @@ namespace InlämningsUppgift2
                 buttonShoot.Visible = false;
                 buttonBlock.Visible = false;
                 buttonLoad.Visible = false;
+                buttonShotgun.Visible = false;
+                if (Logic.playerWin == true)
+                {
+                    pictureBoxYouWin.Visible = true;
+                }
+                else if (Logic.computerWin == true)
+                {
+                    pictureBoxYouLose.Visible = true;
+                }
+                else if (Logic.playerWin != true && Logic.computerWin != true)
+                {
+                    pictureBoxDraw.Visible = true;
+                }
+                pictureBoxCompShoot.Visible = false;
+                pictureBoxCompDefence.Visible = false;
+                pictureBoxCompLoad.Visible = false;
+                pictureBoxCompShotgun.Visible = false;
             }
         }
 
@@ -102,7 +123,29 @@ namespace InlämningsUppgift2
             labelPlayerAmmo.Text = "Ammo: " + Logic.playerAmmo.ToString();
             labelComputerAmmo.Text = "Ammo: " + Logic.computerAmmo.ToString();
             textBoxResults.Text = Logic.outcome;
-
+            pictureBoxYouWin.Visible = false;
+            pictureBoxYouLose.Visible = false;
+            pictureBoxDraw.Visible = false;
+            pictureBoxCompShoot.Visible = false;
+            pictureBoxCompDefence.Visible = false;
+            pictureBoxCompLoad.Visible = false;
+            pictureBoxCompShotgun.Visible = false;
+            if (Computer.computerDecision == "Shoot")
+            {
+                pictureBoxCompShoot.Visible = true;
+            }
+            else if (Computer.computerDecision == "Block")
+            {
+                pictureBoxCompDefence.Visible = true;
+            }
+            else if (Computer.computerDecision == "Load")
+            {
+                pictureBoxCompLoad.Visible = true;
+            }
+            else if (Computer.computerDecision == "Shotgun")
+            {
+                pictureBoxCompShotgun.Visible = true;
+            }
         }
     }
 }
