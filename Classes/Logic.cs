@@ -6,6 +6,8 @@ namespace InlämningsUppgift2.Classes
     {
         public static string outcome = "";
         public static bool gameOver = false;
+        public static bool computerWin = false;
+        public static bool playerWin = false;
         public static int playerAmmo = 0;
         public static int computerAmmo = 0;
         public static int loadingAmmo = 1;
@@ -24,16 +26,19 @@ namespace InlämningsUppgift2.Classes
                 {
                     outcome = "Player fires the shotgun and Computer tries shooting. Player Win!";
                     gameOver = true;
+                    playerWin = true;
                 }
                 else if (Computer.computerDecision == "Block")
                 {
                     outcome = "Player fires the shotgun and Computer tries hiding. Player Win!";
                     gameOver = true;
+                    playerWin = true;
                 }
                 else if (Computer.computerDecision == "Load")
                 {
                     outcome = "Player fires the shotgun and Computer loads. Player Win!";
                     gameOver = true;
+                    playerWin = true;
                 }
             }
             else if (Player.playerDecision == "Shoot")
@@ -50,11 +55,13 @@ namespace InlämningsUppgift2.Classes
                 {
                     outcome = "Player shoots and computer loads. Player win!";
                     gameOver = true;
+                    playerWin = true;
                 }
                 else if (Computer.computerDecision == "Shotgun")
                 {
                     outcome = "Computer fires the shotgun and the player shoots. Computer wins!";
                     gameOver = true;
+                    computerWin = true;
                 }
             }
             else if (Player.playerDecision == "Block")
@@ -75,6 +82,7 @@ namespace InlämningsUppgift2.Classes
                 {
                     outcome = "Computer fires the shotgun and the player tries hiding. Computer wins!";
                     gameOver = true;
+                    computerWin = true;
                 }
             }
             else if (Player.playerDecision == "Load")
@@ -83,6 +91,7 @@ namespace InlämningsUppgift2.Classes
                 {
                     outcome = "Player loads and computer shoots. Computer win!";
                     gameOver = true;
+                    computerWin = true;
                 }
                 else if (Player.playerDecision == "Load" && Computer.computerDecision == "Block")
                 {
@@ -96,6 +105,7 @@ namespace InlämningsUppgift2.Classes
                 {
                     outcome = "Computer fires the shotgun and the player loads. Computer wins!";
                     gameOver = true;
+                    computerWin = true;
                 }
             }
             return gameOver;
@@ -105,7 +115,10 @@ namespace InlämningsUppgift2.Classes
         {
             playerAmmo = 0;
             computerAmmo = 0;
+            Computer.computerDecision = "";
             gameOver = false;
+            playerWin = false;
+            computerWin = false;
         }
     }
 }
